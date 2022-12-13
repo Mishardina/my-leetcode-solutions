@@ -4,12 +4,10 @@ class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         nums = set(nums)
         longest = 0
-        for i in nums:
-            if i-1 not in nums:
-                current = i
-                streak = 0
-                while i in nums:
-                    i+=1
-                    streak+=1
-                    longest = max(longest,streak)
+        for outer_num in nums:
+            if outer_num-1 not in nums:
+                inner_num = outer_num + 1
+                while inner_num in nums:
+                    inner_num += 1
+                longest = max(longest, inner_num - outer_num)
         return longest
